@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Book app</title>
+    <title>The Moonlight Archives | Your book tracking companion</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

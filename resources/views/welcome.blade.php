@@ -9,30 +9,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
-    @if (Route::has('login'))
-    <nav>
-        @auth
-        <a href="{{ url('/dashboard') }}">
-            Dashboard
-        </a>
-        @else
-        <a href="{{ route('login') }}">
-            Log in
-        </a>
-
-        @if (Route::has('register'))
-        <a href="{{ route('register') }}">
-            Register
-        </a>
-        @endif
-        @endauth
-    </nav>
-    @endif
-    </header>
+<body class="flex flex-col justify-between items-center h-screen">
+    <x-navbar />
 
     <main>
-
+        <h1>this is the homepage</h1>
 
     </main>
 

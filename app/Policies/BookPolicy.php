@@ -29,7 +29,12 @@ class BookPolicy
      */
     public function create(User $user): bool
     {
-        //
+        // Any authenticated user can create a book
+        if ($user) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -10,6 +10,10 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [BookController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/add-book', [BookController::class, 'create'])->middleware(['auth', 'verified'])->name('add-book');
+
+Route::post('/add-book', [BookController::class, 'store'])->middleware(['auth', 'verified'])->name('add-book');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

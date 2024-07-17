@@ -28,6 +28,7 @@ class BookController extends Controller
     public function create()
     {
         //
+        return view('books.create');
     }
 
     /**
@@ -43,8 +44,9 @@ class BookController extends Controller
         $book->shelf = $request->shelf;
         $book->cover = $request->cover;
         $book->rating = $request->rating;
+        $book->user_id = Auth::id();
         $book->save();
-        return response()->json($book);
+        return redirect()->route('dashboard')->with('success', 'Book created successfully!');
     }
 
     /**

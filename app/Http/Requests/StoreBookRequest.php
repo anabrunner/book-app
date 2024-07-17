@@ -11,7 +11,7 @@ class StoreBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'date_read' => 'date',
+            'shelf' => 'string|max:255',
+            'cover' => 'string|max:255',
         ];
     }
 }

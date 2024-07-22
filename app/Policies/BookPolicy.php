@@ -21,7 +21,8 @@ class BookPolicy
      */
     public function view(User $user, Book $book): bool
     {
-        //
+        // Users can only view their books
+        return $user->id === $book->user_id;
     }
 
     /**
@@ -42,7 +43,8 @@ class BookPolicy
      */
     public function update(User $user, Book $book): bool
     {
-        //
+        // Checks if the book was created by the logged in user
+        return $user->id === $book->user_id;
     }
 
     /**

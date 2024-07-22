@@ -16,9 +16,10 @@ class BookController extends Controller
      */
     public function index(): View
     {
-        //
-        $user_id = Auth::id();
-        $books = DB::select('select * from books where user_id = ?', [$user_id]);
+        $books = DB::select(
+            'select * from books where user_id = ?',
+            [Auth::id()]
+        );
         return view('dashboard', compact('books'));
     }
 
@@ -27,7 +28,6 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
         return view('books.create');
     }
 
@@ -36,7 +36,6 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
         $book = new Book();
         $book->title = $request->title;
         $book->author = $request->author;
@@ -46,7 +45,7 @@ class BookController extends Controller
         $book->rating = $request->rating;
         $book->user_id = Auth::id();
         $book->save();
-        return redirect()->route('dashboard')->with('success', 'Book created successfully!');
+        return redirect()->route('dashboard')->with('success', 'Book saved successfully!');
     }
 
     /**
@@ -62,7 +61,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.update', compact('book'));
     }
 
     /**
@@ -70,7 +69,6 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        //
         $book->title = $request->title;
         $book->author = $request->author;
         $book->date_read = $request->date_read;
@@ -78,7 +76,7 @@ class BookController extends Controller
         $book->cover = $request->cover;
         $book->rating = $request->rating;
         $book->save();
-        return response()->json($book);
+        return redirect()->route('dashboard')->with('success', 'Book updated successfully!');
     }
 
     /**

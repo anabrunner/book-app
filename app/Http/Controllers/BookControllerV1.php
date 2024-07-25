@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class BookController extends Controller
+class BookControllerV1 extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -84,8 +84,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
         $book->delete();
-        return response()->json(["message" => "book deleted"]);
+        return redirect()->route('dashboard')->with('success', 'Book deleted successfully!');
     }
 }

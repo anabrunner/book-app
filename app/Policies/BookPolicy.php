@@ -52,7 +52,8 @@ class BookPolicy
      */
     public function delete(User $user, Book $book): bool
     {
-        //
+        // Checks if the book was created by the logged in user
+        return $user->id === $book->user_id;
     }
 
     /**

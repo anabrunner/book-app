@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookControllerV1;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,25 +8,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [BookController::class, 'index'])
+Route::get('/dashboard', [BookControllerV1::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('/add-book', [BookController::class, 'create'])
-    ->middleware(['auth', 'verified'])
-    ->name('add-book');
-
-Route::post('/add-book', [BookController::class, 'store'])
-    ->middleware(['auth', 'verified'])
-    ->name('add-book');
-
-Route::get('/edit-book/{book}', [BookController::class, 'edit'])
-    ->middleware(['auth', 'verified', 'can:update,book'])
-    ->name('edit-book');
-
-Route::put('/edit-book/{book}', [BookController::class, 'update'])
-    ->middleware(['auth', 'verified', 'can:update,book'])
-    ->name('edit-book');
+Route::name('v1.books.')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/books', [BookControllerV1::class, 'create'])
+        ->name('create');
+    Route::post('/books', [BookControllerV1::class, 'store'])
+        ->name('store');
+    Route::get('/books/{book}', [BookControllerV1::class, 'edit'])
+        ->middleware('can:update,book')
+        ->name('edit');
+    Route::patch('/books/{book}', [BookControllerV1::class, 'update'])
+        ->middleware('can:update,book')
+        ->name('update');
+    Route::delete('/books/{book}', [BookControllerV1::class, 'destroy'])
+        ->middleware('can:delete,book')
+        ->name('destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])

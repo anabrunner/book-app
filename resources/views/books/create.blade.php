@@ -9,7 +9,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
-          <form action="{{ route('v1.books.store') }}" method="post">
+          <form action="{{ route('v1.books.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
@@ -24,7 +24,7 @@
             <input type="text" id="shelf" name="shelf">
 
             <label for="cover">Cover:</label>
-            <input type="text" id="cover" name="cover">
+            <input type="file" accept=".jpeg,.png,.jpg,.gif" id="cover" name="cover">
 
             <label for="rating">Rating:</label>
             <input type="number" id="rating" name="rating">

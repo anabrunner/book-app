@@ -24,9 +24,10 @@ class StoreBookRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
-            'date_read' => 'date',
-            'shelf' => 'string|max:255',
-            'cover' => 'string|max:255',
+            'date_read' => 'nullable|date',
+            'shelf' => 'nullable|string|max:255',
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'rating' => 'nullable|integer|min:1|max:5',
         ];
     }
 }

@@ -41,7 +41,7 @@ class BookControllerV1 extends Controller
         $book->author = $request->author;
         $book->date_read = $request->date_read;
         $book->shelf = $request->shelf;
-        $book->cover = $request->cover;
+        $book->cover = $request->hasFile('cover') ? $request->file('cover')->store('covers', 'public') : 'covers/default.png';
         $book->rating = $request->rating;
         $book->user_id = Auth::id();
         $book->save();
@@ -73,7 +73,9 @@ class BookControllerV1 extends Controller
         $book->author = $request->author;
         $book->date_read = $request->date_read;
         $book->shelf = $request->shelf;
-        $book->cover = $request->cover;
+        if ($request->hasFile('cover')) {
+            $book->cover = $request->file('cover')->store('covers', 'public');
+        }
         $book->rating = $request->rating;
         $book->save();
         return redirect()->route('dashboard')->with('success', 'Book updated successfully!');

@@ -9,7 +9,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
-          <form action="{{ route('v1.books.update', ['book' => $book]) }}" method="post">
+          <form action="{{ route('v1.books.update', ['book' => $book]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <label for="title">Title:</label>
@@ -25,7 +25,7 @@
             <input type="text" id="shelf" name="shelf" value="{{ $book->shelf }}">
 
             <label for="cover">Cover:</label>
-            <input type="text" id="cover" name="cover" value="{{ $book->cover }}">
+            <input type="file" accept=".jpeg,.png,.jpg,.gif" id="cover" name="cover">
 
             <label for="rating">Rating:</label>
             <input type="number" id="rating" name="rating" value="{{ $book->rating }}">

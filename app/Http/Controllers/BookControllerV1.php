@@ -20,6 +20,7 @@ class BookControllerV1 extends Controller
             'select * from books where user_id = ?',
             [Auth::id()]
         );
+        $books = Book::paginate(12);
         return view('dashboard', compact('books'));
     }
 

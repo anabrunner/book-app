@@ -41,4 +41,7 @@
       @endforeach
     @endif
   </ul>
+  @if ($books)
+    {{ $books->links() }}
+  @endif
 </div>

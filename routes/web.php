@@ -33,7 +33,7 @@ Route::name('v1.shelves.')->middleware(['auth', 'verified'])->group(function () 
     Route::get('/shelves', [ShelfControllerV1::class, 'index'])
         ->name('index');
     Route::get('/shelves/{shelf}', [ShelfControllerV1::class, 'showBooks'])
-        ->name('shelves.showBooks');
+        ->name('showBooks');
 });
 
 Route::middleware('auth')->group(function () {

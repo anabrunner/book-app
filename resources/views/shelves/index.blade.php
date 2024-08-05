@@ -25,7 +25,9 @@
                     <h2 class="card-title">{{ $shelf }}</h2>
                     <p></p>
                     <div class="card-actions justify-end">
-                      <button class="btn btn-neutral">View Shelf</button>
+                      <a href="{{ route('v1.shelves.showBooks', ['shelf' => $shelf]) }}" class="btn btn-neutral">
+                        View Shelf
+                      </a>
                     </div>
                   </div>
                 </li>

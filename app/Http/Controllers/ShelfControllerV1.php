@@ -36,7 +36,7 @@ class ShelfControllerV1 extends Controller
         $userId = Auth::id();
         $books = Book::forUser($userId)
             ->byShelf($shelf)
-            ->get();
+            ->paginate(12);
         return view('shelves.books', compact('books', 'shelf'));
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookControllerV1;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShelfControllerV1;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +27,13 @@ Route::name('v1.books.')->middleware(['auth', 'verified'])->group(function () {
     Route::delete('/books/{book}', [BookControllerV1::class, 'destroy'])
         ->middleware('can:delete,book')
         ->name('destroy');
+});
+
+Route::name('v1.shelves.')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/shelves', [ShelfControllerV1::class, 'index'])
+        ->name('index');
+    Route::get('/shelves/{shelf}', [ShelfControllerV1::class, 'showBooks'])
+        ->name('shelves.showBooks');
 });
 
 Route::middleware('auth')->group(function () {

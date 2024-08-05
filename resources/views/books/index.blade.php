@@ -1,6 +1,6 @@
 <div>
   <ul class="grid gap-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-    @if (!$books)
+    @if (!count($books))
       You haven't added any books yet!
     @else
       @foreach ($books as $book)
@@ -41,7 +41,5 @@
       @endforeach
     @endif
   </ul>
-  @if ($books)
-    {{ $books->links() }}
-  @endif
+  {{ $books->links() }}
 </div>

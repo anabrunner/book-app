@@ -7,7 +7,6 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class BookControllerV1 extends Controller
 {
@@ -16,11 +15,8 @@ class BookControllerV1 extends Controller
      */
     public function index(): View
     {
-        $books = DB::select(
-            'select * from books where user_id = ?',
-            [Auth::id()]
-        );
-        $books = Book::paginate(12);
+        $userId = Auth::id();
+        $books = Book::forUser($userId)->paginate(12);
         return view('dashboard', compact('books'));
     }
 

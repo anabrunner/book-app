@@ -22,7 +22,7 @@ class DashboardTest extends TestCase
     /**
      * Test redirection if user not logged in.
      */
-    public function test_dashboard_redirect_if_not_logged_in(): void
+    public function test_redirect_if_not_logged_in(): void
     {
         $response = $this->get('/dashboard');
         $response->assertStatus(302);
